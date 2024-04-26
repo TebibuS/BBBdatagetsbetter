@@ -50,7 +50,7 @@ The BBB Library contains scripts for record matching and validation using the cl
 
 This format ensures that all essential business information is standardized and ready for further processing or integration with the library's methods.
 
-## Understanding the Library
+## Verifying Business Records based on Google Places API
 
 #### Introduction
 
