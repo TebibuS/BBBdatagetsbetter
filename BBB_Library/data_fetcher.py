@@ -17,15 +17,38 @@ class GooglePlacesFetcher(DataFetcher):
         self.details_url = "https://maps.googleapis.com/maps/api/place/details/json"
 
     def fetch_data(self, query):
-        params = {'query': query, 'key': self.api_key}
-        search_response = requests.get(self.search_url, params=params)
-        if search_response.status_code == 200:
+        # Construct the full URL for the search query
+        search_url = f"{self.search_url}?query={query}&key={self.api_key}"
+
+        try:
+            search_response = requests.get(search_url)
+            search_response.raise_for_status()  # Checks if the request was successful
             search_data = search_response.json()
-            if search_data['status'] == 'OK':
-                place_id = search_data['results'][0]['place_id']
-                details_params = {'place_id': place_id, 'fields': 'name,formatted_address,formatted_phone_number,website', 'key': self.api_key}
+            
+            if search_data["status"] == "OK":
+                # Assume the first result is the most relevant
+                place_id = search_data["results"][0]["place_id"]
+                
+                # Prepare parameters for the details request
+                details_params = {
+                    "place_id": place_id,
+                    "fields": "name,formatted_address,formatted_phone_number,website",
+                    "key": self.api_key
+                }
                 details_response = requests.get(self.details_url, params=details_params)
-                if details_response.status_code == 200:
-                    details_data = details_response.json()
-                    return details_data['result'] if details_data['status'] == 'OK' else None
-        return None
+                details_response.raise_for_status()  # Checks if the request was successful
+                details_data = details_response.json()
+                
+                if details_data["status"] == "OK":
+                    result = details_data["result"]
+                    result['place_id'] = place_id  # Include place_id in the result
+                    return result
+                else:
+                    print(f"Details API returned status: {details_data['status']}")
+                    return None
+            else:
+                print(f"Search API returned status: {search_data['status']}")
+                return None
+        except requests.exceptions.RequestException as e:
+            print(f"Error fetching data for query '{query}': {e}")
+            return None
