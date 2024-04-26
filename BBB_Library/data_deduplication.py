@@ -37,7 +37,11 @@ def data_indexer(data: pd.DataFrame) -> pd.MultiIndex:
 
 def compute_features(data: pd.DataFrame, candidate_links: pd.MultiIndex) -> pd.DataFrame:
     """
-    Compute features for candidate record pairs.
+    Compute features for candidate record pairs. Default threshold values are set for each feature based on testing. 
+    They may be tweaked for future use.
+
+    Computed features can be string, numeric, or exact matches. 
+    These functions can be explored more in-depth in the recordLinkage documentation.
 
     Args:
         data (pd.DataFrame): DataFrame containing the data.
@@ -98,7 +102,8 @@ def get_matches(data: pd.DataFrame, matches: pd.DataFrame) -> list:
 
 def deduplication(data_path: str, threshold: float = 4.5) -> list[list]:
     """
-    Perform data deduplication.
+    Main function to perform data deduplication. Uses all the other functions for ease of 
+    use.
 
     Args:
         data_path (str): Path to the CSV file containing the data.
