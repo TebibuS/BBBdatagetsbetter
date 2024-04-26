@@ -1,4 +1,4 @@
-import data_deduplication as dedup
+from BBB_Library import data_deduplication as dedup
 """
 data = dedup.load_data('C:\BBBdatagetsbetter\Data\cleaned_and_normalized_data_all.csv')
 links = dedup.data_indexer(data)
