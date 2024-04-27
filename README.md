@@ -96,7 +96,7 @@ After the confidence score is calculated, the script determines whether the busi
 
 This script automates the verification of business listings by comparing them against authoritative data from Google. The confidence score is a robust metric used to gauge the accuracy of the information, ensuring that business listings are up-to-date and reliable.
 
-## Limitations and Solutions
+### Limitations and Solutions
 
 ### Address Normalization Challenges
 
@@ -132,7 +132,7 @@ This script evaluates the effectiveness of the fuzzy matching process by compari
 
 This approach allows us to trust the matching process despite the noted discrepancies in address formatting, ensuring higher accuracy in our data integration tasks.
 
-## Documentation for Identifying Duplicates Within a Dataset
+## Identifying Duplicates Within a Dataset
 
 ### Introduction
 
