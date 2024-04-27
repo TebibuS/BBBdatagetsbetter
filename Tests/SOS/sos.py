@@ -3,8 +3,8 @@ import logging
 import numpy as np
 import pandas as pd
 
-from lib.data_processing import *
-from lib.Normalizing import *
+from Tests.SOS.data_processing import *
+from Tests.SOS.Normalizing import *
 
 
 def update_columns_sos_two(row: pd.Series) -> pd.Series:
