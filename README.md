@@ -34,6 +34,10 @@ It combines essential information such as company name, address, phone number, e
 **Description:**  
 After merging the data, this script eliminates invalid entries, filters out businesses that are out of business, selects the wanted columns, and formats the data types as needed.
 
+The final output:
+
+
+
 ## BBB Library
 
 **Location:** `BBB_Library` folder
