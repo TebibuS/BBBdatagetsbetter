@@ -165,8 +165,10 @@ compare_dataframes_sos(historicalData: def joining_data(oldData: pd.DataFrame, n
 Purpose: Compares age-old business data against the new SOS data to clock changes and identify differences, if any.
 Inputs: Two pandas DataFrames, one containing historical business data (historicalData) and the other containing new SOS data (newData).
 Returns: A data frame that could be populated by new data from the SOS
+
 Execution and logging:
 The script sets the logging level to INFO,which is followed by comments mentioning the paths to historical data and new SOS data. It fetches the data, runs the comparison (calling the function), and saves the updated data to a new CSV file (returning and appending to the file). The log will be created by the script during task execution to identify any potential issues during the process.
+
 Usage:
 Change the paths SOS_DATA_PATH and BUSINESS_DATA_PATH to point to the database (actual file locations).
 Execute the script in an environment where installed packages such as Pandas, Numpy, and logging are present.
