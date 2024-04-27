@@ -133,6 +133,45 @@ This script evaluates the effectiveness of the fuzzy matching process by compari
 
 This approach allows us to trust the matching process despite the noted discrepancies in address formatting, ensuring higher accuracy in our data integration tasks.
 
+## SOS Documentation
+
+### Introduction
+
+The code implements a procedure to benchmark company statistical information derived from an old dataset versus new data provided by the Secretary of State (SOS). By doing so, it aims to cross-check the factual data with the most current information to flag inconsistencies so the database only displays true and up-to-date business information.
+
+### Overview
+Functions:
+update_columns_sos_two(row: pd.Series) -> pd.Series:
+Purpose: Change data separately for each row to show if the business name, address, and zip code given are correct according to the Secretary of State.
+Inputs: Pandas Series encompasses the whole row of a dataframe, being the single-row series object.
+Returns: Completely filled rows on the Excel sheet showing the current status of data validation.
+
+update_sos_columns_one(row: pd.Series) -> pd.Series:
+Purpose: Examines and highlights the wrong details of business data by confronting each line with the SOS records and marking out the abnormalities.
+Inputs: A Pandas series that simulates the role of one single row in a dataframe.
+Returns: The modified section responding to different adjacent columns denotes the validation status.
+
+﻿add_sos_columns(data: pd.DataFrame) -> pd.DataFrame:
+Purpose: The dataframe initiates columns for holding data validation results and truth source identifiers.
+Inputs: A Pandas data frame of business information.
+Returns: The DataFrame has the new columns that are initialized to validate the data.
+
+add_update_columns(data: pd.DataFrame) -> pd.DataFrame:
+Purpose: Creates new dataframe columns that will be used for storing SOS data-related updates.
+Inputs: Pandas DataFrame with the business data.
+Returns: The DataFrame will consist of the allotted column(s) to store the updates.
+
+compare_dataframes_sos(historicalData: def joining_data(oldData: pd.DataFrame, newData: pd.DataFrame) -> pd.DataFrame:
+Purpose: Compares age-old business data against the new SOS data to clock changes and identify differences, if any.
+Inputs: Two pandas DataFrames, one containing historical business data (historicalData) and the other containing new SOS data (newData).
+Returns: A data frame that could be populated by new data from the SOS
+Execution and logging:
+The script sets the logging level to INFO,which is followed by comments mentioning the paths to historical data and new SOS data. It fetches the data, runs the comparison (calling the function), and saves the updated data to a new CSV file (returning and appending to the file). The log will be created by the script during task execution to identify any potential issues during the process.
+Usage:
+Change the paths SOS_DATA_PATH and BUSINESS_DATA_PATH to point to the database (actual file locations).
+Execute the script in an environment where installed packages such as Pandas, Numpy, and logging are present.
+Make sure the import modules (data_processing, normalizing) are available in the SOS directory and adjust the import paths according to your project directory structure.
+
 ## Identifying Duplicates Within a Dataset
 
 ### Introduction
