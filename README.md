@@ -40,6 +40,7 @@ After merging the data, this script eliminates invalid entries, filters out busi
 
 The final output:
 
+<img width="971" alt="image" src="https://github.com/TebibuS/BBBdatagetsbetter/assets/100982988/d5dfd6fc-87e1-45f2-8306-b567b68e6f60">
 
 
 ## BBB Library
@@ -47,7 +48,7 @@ The final output:
 **Location:** `BBB_Library` folder
 
 **Description:**  
-The BBB Library contains scripts for record matching, record validation, and record deduplication using the cleaned and normalized CSV file. These scripts match BBB's database records with another database (referred to here as "model"), which is believed to be more up-to-date. The library includes methods such as fetching data from Google Places. This library opens the possibility for new "models" to be added.
+The BBB Library contains scripts for record matching, record validation, and record deduplication using the **cleaned and normalized CSV file**. These scripts match BBB's database records with another database (referred to here as "model"), which is believed to be more up-to-date. The library includes methods such as fetching data from Google Places. This library opens the possibility for new "models" to be added.
 
 **Requirements for new models:**
 - Output must be JSON with the following information: business name, address, phone number, and website. It should be in the specified format:
