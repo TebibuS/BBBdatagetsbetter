@@ -139,6 +139,8 @@ This approach allows us to trust the matching process despite the noted discrepa
 
 The code implements a procedure to benchmark company statistical information derived from an old dataset versus new data provided by the Secretary of State (SOS). By doing so, it aims to cross-check the factual data with the most current information to flag inconsistencies so the database only displays true and up-to-date business information.
 
+P.S. Because of the complications we encountered when dealing with SOS, we decided to separate SOS from the general process of checking in a process after Google Places. Instead, we place it in the tests file as its own separate process.
+
 ### Overview
 Functions:
 update_columns_sos_two(row: pd.Series) -> pd.Series:
