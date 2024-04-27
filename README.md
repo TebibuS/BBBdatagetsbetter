@@ -120,7 +120,7 @@ To address these inconsistencies, we've implemented a fuzzy matching approach us
 
 **Script:** `test.py`
 
-This script evaluates the effectiveness of the fuzzy matching process by comparing abbreviated addresses with their full-text counterparts. Our testing indicates that `fuzzywuzzy` can confidently achieve a similarity match of over 90% for such cases, making it a reliable solution for overcoming the described limitations.
+This script evaluates the effectiveness of the fuzzy matching process by comparing abbreviated addresses with their full-text counterparts. Our testing indicates that `fuzzywuzzy` can confidently achieve a similarity match of over 85% even in worst case scenarios such as `1667 Industrial Boulevard Northeast, Maple Grove, SD 42254`, making it a reliable solution for overcoming the described limitations.
 
 This approach allows us to trust the matching process despite the noted discrepancies in address formatting, ensuring higher accuracy in our data integration tasks.
 
