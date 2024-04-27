@@ -247,8 +247,9 @@ result = dedup.deduplication('C:\BBBdatagetsbetter\Data\cleaned_and_normalized_d
 ## Contacts
 
 If you have any questions, feel free to contact:
-Ali Rashid: ali.rashid@mnsu.edu
-Tebibu Kebede: tebibu.kebede@mnsu.edu
-Pedro Gomes do Nascimento: pedro.gomesdonascimento@mnsu.edu
-Justin Engles: justin.engels@mnsu.edu
-Mohamed Farag: mohamed.farag@mnsu.edu
+
+- Ali Rashid: ali.rashid@mnsu.edu
+- Tebibu Kebede: tebibu.kebede@mnsu.edu
+- Pedro Gomes do Nascimento: pedro.gomesdonascimento@mnsu.edu
+- Justin Engles: justin.engels@mnsu.edu
+- Mohamed Farag: mohamed.farag@mnsu.edu
