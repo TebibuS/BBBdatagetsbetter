@@ -6,6 +6,10 @@ This README provides a detailed description of each script in this repository an
 
 The scripts in this repository are designed for processing and validating data from the BBB (Better Business Bureau) database. They help in data deduplication, merging, cleaning, normalizing, and matching records with an external, more up-to-date database. 
 
+## Setting Up the Project
+
+To set up the project, take the data in the one drive and paste it into the `Data` folder. Additionally, take the `.env` and place it in the root directory of the project.
+
 ## Requirements
 
 Install all the dependencies listed in the `requirements.txt` file.
@@ -240,3 +244,11 @@ import data_deduplication as dedup
 result = dedup.deduplication('C:\BBBdatagetsbetter\Data\cleaned_and_normalized_data_all.csv',4.5)
 ```
 
+## Contacts
+
+If you have any questions, feel free to contact:
+Ali Rashid: ali.rashid@mnsu.edu
+Tebibu Kebede: tebibu.kebede@mnsu.edu
+Pedro Gomes do Nascimento: pedro.gomesdonascimento@mnsu.edu
+Justin Engles: justin.engels@mnsu.edu
+Mohamed Farag: mohamed.farag@mnsu.edu
