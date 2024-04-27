@@ -4,7 +4,7 @@ This README provides a detailed description of each script in this repository an
 
 ## Overview
 
-The scripts in this repository are designed for processing and validating data from the BBB (Better Business Bureau) database. They help in merging, cleaning, normalizing, and matching records with an external, more up-to-date database.
+The scripts in this repository are designed for processing and validating data from the BBB (Better Business Bureau) database. They help in data deduplication, merging, cleaning, normalizing, and matching records with an external, more up-to-date database. 
 
 ## Data Processing
 
@@ -32,7 +32,7 @@ It combines essential information such as company name, address, phone number, e
 **Script:** `clean_and_normalize.py`
 
 **Description:**  
-After merging the data, this script elimates invalid entries, filters out businesses that are out of business, selects the wanted columns and formats the data types as needed.
+After merging the data, this script eliminates invalid entries, filters out businesses that are out of business, selects the wanted columns, and formats the data types as needed.
 
 ## BBB Library
 
@@ -42,7 +42,7 @@ After merging the data, this script elimates invalid entries, filters out busine
 The BBB Library contains scripts for record matching and validation using the cleaned and normalized CSV file. These scripts match BBB's database records with another database (referred to here as "model"), which is believed to be more up-to-date. The library includes methods such as fetching data from Google Places. This library opens the possibility for new "models" to be added.
 
 **Requirements for new models:**
-- Output must be JSON with the following information: business name, adress, phone number, and website. It should be in the specified format:
+- Output must be JSON with the following information: business name, address, phone number, and website. It should be in the specified format:
   - `name`
   - `formatted_address`
   - `formatted_phone_number`
@@ -50,7 +50,7 @@ The BBB Library contains scripts for record matching and validation using the cl
 
 This format ensures that all essential business information is standardized and ready for further processing or integration with the library's methods.
 
-## Understanding the Library
+## Verifying Business Records based on Google Places API
 
 #### Introduction
 
@@ -124,4 +124,67 @@ This script evaluates the effectiveness of the fuzzy matching process by compari
 
 This approach allows us to trust the matching process despite the noted discrepancies in address formatting, ensuring higher accuracy in our data integration tasks.
 
+## Documentation for Identifying Duplicates Within a Dataset
+
+### Introduction
+
+This documentation explains a Python script designed to identify duplicate records within a dataset using the Python Record Linkage Toolkit.
+
+### Overview
+
+This script operates in four stages:
+
+1. **Loading Data**: The pre-processed business record data is fed into the script using the load_data function. This data is then preprocessed further by ensuring correct data typing of the firm ID and the phone number and by creating a unique primary key called "ID".
+2. **Indexing Records**: All possible duplicate record pairs are created using a blocking method that divides the records within groups which have a high likelihood of being duplicate records. These duplicate record pairs are known as candidate links.
+3. **Computing Similarity Score**: Each candidate link is evaluated based on their similarity of company name, address, state, email, and url. These feature similarities are calculated and saved in a dataframe called "features." These features are then ranked to determine the best matches using a threshold which are saved in a dataframe called "matches".
+4. **Identifying Duplicate Records**: Using the unique "ID" of each paired record in matches, the firm ID is extracted from the original record data and placed into a list of tuples. These pairs of firm IDs signify which business records were identified as duplicates. At the end of this process, the list of duplicate record pairs are outputted in a CSV named "duplicate_records."
+
+### Data Deduplication
+
+**Location:** `BBB_Library` folder
+**Script:** `data_deduplication`
+
+This script contains functions relevant to identify duplicate records within a dataset. It is meant to be used with the cleaned and merged dataset from the data processing section.
+
+### Functions
+
+#### `load_data()`
+
+This function loads data from a CSV file and returns a loaded dataframe using a file path as input. It ensures that the firm id and phone number are formatted as strings. It also sets a key to uniquely identify each business record in the dataframe. 
+
+#### `data_indexer()`
+
+This function uses the Python recordlinkage toolkit to create a data indexer to generate candidate links based on a specific subset of features in the dataset. Based on testing, the indexer blocks the company name and the address to generate probable duplicate record matches. 
+
+#### `compute_features()`
+
+This function uses the candidate links generated by data_indexer() to compute the similarity scores of specific features using the recordLinkage.Compare() object. The criteria to evaluate these features can either be string, numeric, or exact. Default threshold values are used based on testing but these can be tweaked for future use. Additionally, more features can be added to the comparison. For more information on various comparison methods, visit the recordLinkage documentation.
+
+Features dataframe
+
+![image](https://github.com/TebibuS/BBBdatagetsbetter/assets/112585051/6ac7bbf2-59f0-45bb-8ad4-d14d5858c4e5)
+
+#### `compute_matches()`
+
+This function uses the features dataframe generated by compute_features() and returns a dataframe of the records that have the highest total similarity score based on a pre-defined threshold. It also denotes an ID column for each record pair to be used. 
+
+*Note that if more features are added for comparison in compute_features() the threshold must be changed. Each feature has a maximum value of 1 which denotes a 100% match. The current implementation has 5 features so the default threshold for a match is a 4.5.
+
+#### `get_matches()`
+
+This function takes the unique ID's generated by compute_matches() and finds the firm ID of that record in the original dataset. Once the firm ID is found for both records in the record pair, it adds the record pair's firm ID into a list of tuples which is returned by the function. A helper function called get_firm_id is used to grab the firm ID using a specific ID value in the matches dataframe.   
+
+#### `deduplication()`
+
+This function is intended to be the main function for using the `data_deduplication` module. It contains methods from every function used to simplify the data deduplication process for the end user. The only input paramerters is the path to the cleaned and merged dataset and the function outputs a CSV file containing record pairs of all the duplicate records identified by the script. 
+
+#### How to Use
+
+To use these functions to identify duplicated records, use the deduplication function. This function takes the path to the merged and clean data and the desired threshold for potential matches. It outputs a csv with the firm IDs of duplicate record pairs. Note that the threshold mentioned in the parameters only impacts the criteria for generating matches from the total similarity score. For more specific threshold tweaking, see the compute_features function.
+
+Example of using data_deduplication
+```
+import data_deduplication as dedup
+result = dedup.deduplication('C:\BBBdatagetsbetter\Data\cleaned_and_normalized_data_all.csv',4.5)
+```
 

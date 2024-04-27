@@ -13,9 +13,7 @@ def load_data(path: str) -> pd.DataFrame:
     Returns:
         pd.DataFrame: Loaded DataFrame.
     """
-    record_data = pd.read_csv(path)
-    record_data['firm_id'] = record_data['firm_id'].astype(str)
-    record_data['phone'] = record_data['phone'].astype(str)
+    record_data = pd.read_csv(path,dtype={'firm_id' : str, 'phone' : str})
     record_data = record_data.reset_index(names=['ID'])
     return record_data
 
