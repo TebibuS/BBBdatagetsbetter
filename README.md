@@ -6,6 +6,10 @@ This README provides a detailed description of each script in this repository an
 
 The scripts in this repository are designed for processing and validating data from the BBB (Better Business Bureau) database. They help in data deduplication, merging, cleaning, normalizing, and matching records with an external, more up-to-date database. 
 
+## Requirements
+
+Install all the dependencies listed in the `requirements.txt` file.
+
 ## Data Processing
 
 ### Merge
