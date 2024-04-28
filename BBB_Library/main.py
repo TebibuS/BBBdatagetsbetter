@@ -12,7 +12,7 @@ def main():
     fetcher = GooglePlacesFetcher(api_key)
 
     # Load business data from CSV
-    df = pd.read_csv("/Users/pedro/Documents/GitHub/BBBdatagetsbetter/BBB_Library/Data/cleaned_and_normalized_data_first23.csv")
+    df = pd.read_csv("/Users/pedro/Documents/GitHub/BBBdatagetsbetter/Data_Processing/Output_Data/cleaned_and_normalized_data_all.csv", nrows=25)
 
     df['phone'] = df['phone'].apply(format_phone_number)
     df['zip'] = df['zip'].apply(format_zip)

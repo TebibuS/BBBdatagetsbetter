@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the CSV file
-final_df = pd.read_csv('Data/merged_output_all.csv')
+final_df = pd.read_csv('Data_Processing/Output_Data/merged_output_all.csv', low_memory=False)
 
 # Drop rows without a company name
 final_df.dropna(subset=['company_name'], inplace=True)
@@ -27,6 +27,6 @@ final_df['phone'] = final_df['phone'].apply(lambda x: f"{int(x):010d}" if pd.not
 final_df.drop_duplicates(subset=['company_name', 'address'], inplace=True)
 
 # Saving the cleaned and normalized DataFrame to a new CSV file
-final_df.to_csv('Data/cleaned_and_normalized_data_all.csv', index=False)
+final_df.to_csv('Data_Processing/Output_Data/cleaned_and_normalized_data_all.csv', index=False)
 
 print(final_df.head())

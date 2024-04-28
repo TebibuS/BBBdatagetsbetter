@@ -25,11 +25,11 @@ def merge_on_occurrence_order(base_df, additional_df, base_columns, additional_c
     return merged_df
 
 # Load your CSV files
-base_df = pd.read_csv('tblfirms_firm_companyname.csv')
-additional_df_1 = pd.read_csv('address_phones_all.csv')
-additional_df_2 = pd.read_csv('tblfirms_firm_email.csv')
-additional_df_3 = pd.read_csv('tblfirms_firm_url.csv')
-additional_df_4 = pd.read_csv('tblfirms_firm.csv')
+base_df = pd.read_csv('Data_Processing/Source_Data/tblfirms_firm_companyname.csv', low_memory=False)
+additional_df_1 = pd.read_csv('Data_Processing/Output_Data/address_phones_all.csv', low_memory=False)
+additional_df_2 = pd.read_csv('Data_Processing/Source_Data/tblfirms_firm_email.csv', low_memory=False)
+additional_df_3 = pd.read_csv('Data_Processing/Source_Data/tblfirms_firm_url.csv', low_memory=False)
+additional_df_4 = pd.read_csv('Data_Processing/Source_Data/tblfirms_firm.csv', low_memory=False)
 # Add more DataFrames as needed
 
 # Define the columns you want to keep from each DataFrame (excluding 'firm_id')
@@ -48,4 +48,4 @@ merged_df = merge_on_occurrence_order(merged_df, additional_df_4, base_columns +
 # Continue merging other DataFrames as needed
 
 # Save the merged DataFrame to a new CSV file
-merged_df.to_csv('merged_output_all.csv', index=False)
+merged_df.to_csv('Data_Processing/Output_Data/merged_output_all.csv', index=False)

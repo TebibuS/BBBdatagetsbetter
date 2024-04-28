@@ -1,6 +1,6 @@
 # This function still needs some improvement as it mistakenly normalizes some addresses.
 # For example, it normalizes "1408 County Road C West, Roseville, MN 55113" to "1408 C Roseville, MN 55113"
-
+# Because of this, we are not using this function in the BBB_Library.
 
 streetTypeStandardize = {'ALLEY':'ALY','ALLY':'ALY','ALY':'ALY','ALLEE':'ALY',
                          'ANNEX':'ANX','ANNX':'ANX','ANX':'ANX','ANEX':'ANX',
