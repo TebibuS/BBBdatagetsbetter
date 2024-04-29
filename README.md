@@ -14,6 +14,9 @@ To set up the project, take the data in the one drive and paste it into the `Dat
 
 Install all the dependencies listed in the `requirements.txt` file.
 
+If you have pip installed, an easy way to get all of the dependencies is to open a terminal in the root directory and execute the following command: `pip install -r requirements.txt`
+
+
 ## Data Processing
 
 ### Merge
